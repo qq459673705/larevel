@@ -20,4 +20,20 @@ Route::get('/', function()
 //    return "User!";
 //});
 
-Route::get('/user', 'UserController@Index');
+Route::get('user', 'UserController@Index');
+
+Route::get('test/{id}', function($id){
+    if($id == 1){
+        return "test1";
+    }else{
+        return $id;
+    }
+});
+
+Route::get('test2', function(){
+    if(Route::input('id') == 1){  //Route::input('id')  id这个参数该如何传过来,是通过 POST吗?
+        return "test21";
+    }else{
+        return "test22";
+    }
+});
