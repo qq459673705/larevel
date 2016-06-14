@@ -20,7 +20,7 @@ Route::get('/', function()
 //    return "User!";
 //});
 
-Route::get('user', 'UserController@Index');
+//Route::get('user', 'UserController@Index');
 
 Route::get('test/{id}', function($id){
     if($id == 1){
@@ -37,3 +37,32 @@ Route::get('test2', function(){
         return "test22";
     }
 });
+
+Route::get('test3', function(){   //这个才是正确从URL获取对应参数的方法 Input::get()
+    if(Input::get('id') == 1){
+        return "111";
+    }else{
+        return Input::get('id');
+    }
+});
+
+//Route::get('user', array('before' => 'old', function()  //这个指的是 参数 before == old 时执行内部方法
+//{
+//    return 'You are over 200 years old!';             //测试 http://localhost/larevel/public/user?before=old
+//}));
+
+
+//Route::get('user', array('before' => 'auth|old', function()  //这种写法有问题,暂时不知道什么地方出了问题
+//{
+//    return 'You are authenticated and over 200 years old!';
+//}));
+//
+//Route::filter('age', function($route, $request, $value)  //没看明白怎么用
+//{
+//    //
+//});
+//
+//Route::get('user', array('before' => 'age:200', function()
+//{
+//    return 'Hello World';
+//}));
